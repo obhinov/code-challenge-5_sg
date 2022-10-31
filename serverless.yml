@@ -12,6 +12,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:Scan
         - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.DynamoDBTableName}
 
 functions:
@@ -39,6 +40,15 @@ functions:
       - http:
           path: users_update
           method: PUT
+          cors: true
+    environment:
+      TABLE_NAME: ${self:custom.DynamoDBTableName}
+  delete:
+    handler: delete.handler
+    events:
+      - http:
+          path: users_delete
+          method: DELETE
           cors: true
     environment:
       TABLE_NAME: ${self:custom.DynamoDBTableName}
