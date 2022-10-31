@@ -32,6 +32,15 @@ functions:
           cors: true
     environment:
       TABLE_NAME: ${self:custom.DynamoDBTableName}
+  update:
+    handler: update.handler
+    events:
+      - http:
+          path: users_update
+          method: PUT
+          cors: true
+    environment:
+      TABLE_NAME: ${self:custom.DynamoDBTableName}
   
 
 resources: # CloudFormation template syntax from here on.
