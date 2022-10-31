@@ -4,6 +4,14 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-2
+  stage: dev
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.DynamoDBTableName}
+
 functions:
   create:
     handler: create.handler
@@ -12,3 +20,26 @@ functions:
           path: users
           method: POST
           cors: true
+    environment:
+      TABLE_NAME: ${self:custom.DynamoDBTableName}
+
+resources: # CloudFormation template syntax from here on.
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.DynamoDBTableName}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: user_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: user_id
+            KeyType: HASH
+
+custom:
+  DynamoDBTableName: ${self:service}-users-table-${self:provider.stage}
+
+#${self:service}-users-table-${self:provider.stage}
+#users-table
+

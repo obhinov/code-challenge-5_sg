@@ -1,10 +1,10 @@
-const aws = require('aws-sdk')
+const aws = require('aws-sdk');
 
 const dynamodb = new aws.DynamoDB; // get the dynamoDB SDK
 
-const dynamoTable = process.env.DynamoDB_TABLE_NAME;
+const dynamoTable = process.env.TABLE_NAME;
 
-const api_function = {}
+const api_function = {};
 
 api_function.handler = async(event) => {
     console.log(event);
@@ -13,30 +13,31 @@ api_function.handler = async(event) => {
 
     try {
         if (event.path=='/users' && event.httpMethod=='POST'){
-            response.body = JSON.stringify(await createUser(JSON.parse(event.body)));
+            response.body = JSON.stringify(await api_function.createUser(JSON.parse(event.body)));
         }
         response.statusCode = 200;
     } catch(e) {
-        response.body = e;
+        response.body = JSON.stringify(e);
         response.statusCode = 500;
     }
+    console.log(response);
     return response;
 
-}
+};
 
 api_function.createUser = (item) => {
     return new Promise((resolve,reject) => {
         let params = {
             TableName: dynamoTable,
             Item: item
-        }
+        };
 
-        dynamodb.putItem(params, function(err,data) {
+        dynamodb.putItem(params, (err,data) => {
             if (err) reject(err);
-            else resolve(data)
-        })
+            else resolve(data);
+        });
     });
-}
+};
 
 /*
 event format:
@@ -45,4 +46,10 @@ event format:
 - event.body = '{\n    "user_id": "BWMP-883",\n    "name": "De Niro"\n}'
 */
 
-module.exports = handler
+/*
+API Request Body format:
+{"user_id": {"S": "baba43"}, "name": {"S": "thomas"}}
+*/
+
+module.exports = api_function;
+// create
