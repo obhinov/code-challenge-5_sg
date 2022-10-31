@@ -37,7 +37,7 @@ api_function.updateUser = (item) => {
                     S: item.name.S
                 }
             },
-            UpdateExpression: "#N = :n",
+            UpdateExpression: "SET #N = :n",
             Key: {
                 "user_id": {
                     S: item.user_id.S
@@ -45,7 +45,7 @@ api_function.updateUser = (item) => {
             }
         };
 
-        dynamodb.putItem(params, (err,data) => {
+        dynamodb.updateItem(params, (err,data) => {
             if (err) reject(err);
             else resolve(data);
         });
@@ -61,7 +61,7 @@ event format:
 
 /*
 API Request Body format:
-{"user_id": {"S": "baba43"}, "name": {"S": "thomas"}}
+{"user_id": {"S": "wnwn834"}, "name": {"S": "newNameJeremy"}}
 */
 
 module.exports = api_function;
