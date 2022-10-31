@@ -10,6 +10,7 @@ provider:
     - Effect: Allow
       Action:
         - dynamodb:PutItem
+        - dynamodb:Scan
       Resource: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.DynamoDBTableName}
 
 functions:
@@ -17,7 +18,7 @@ functions:
     handler: create.handler
     events:
       - http:
-          path: users
+          path: users_create
           method: POST
           cors: true
     environment:
@@ -26,7 +27,7 @@ functions:
     handler: read.handler
     events:
       - http:
-          path: users
+          path: users_get
           method: GET
           cors: true
     environment:

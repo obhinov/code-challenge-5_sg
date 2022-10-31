@@ -12,7 +12,7 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users' && event.httpMethod=='GET'){
+        if (event.path=='/users_get' && event.httpMethod=='GET'){
             response.body = JSON.stringify(await api_function.readUsers(JSON.parse(event.body)));
         }
         response.statusCode = 200;
