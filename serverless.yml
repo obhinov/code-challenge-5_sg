@@ -22,6 +22,16 @@ functions:
           cors: true
     environment:
       TABLE_NAME: ${self:custom.DynamoDBTableName}
+  read:
+    handler: read.handler
+    events:
+      - http:
+          path: users
+          method: GET
+          cors: true
+    environment:
+      TABLE_NAME: ${self:custom.DynamoDBTableName}
+  
 
 resources: # CloudFormation template syntax from here on.
   Resources:
