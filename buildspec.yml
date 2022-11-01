@@ -8,6 +8,6 @@ phases:
     commands:
       - npm install -g serverless
       - npm install
-    build:
-      commands:
-        - serverless deploy --stage ${STAGE_NAME}
+  build:
+    commands:
+      - serverless deploy --stage ${STAGE_NAME}
