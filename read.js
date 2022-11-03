@@ -39,15 +39,7 @@ api_function.readUsers = (item) => {
 };
 
 /*
-event format:
-- event.httpMethod = 'POST'
-- event.path = '/users'
-- event.body = '{\n    "user_id": "BWMP-883",\n    "name": "De Niro"\n}'
-*/
-
-/*
-API Request Body format:
-{"user_id": {"S": "baba43"}, "name": {"S": "thomas"}}
+No API request body input required
 */
 
 module.exports = api_function;

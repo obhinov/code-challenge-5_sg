@@ -44,16 +44,8 @@ api_function.deleteUser = (item) => {
 };
 
 /*
-event format:
-- event.httpMethod = 'POST'
-- event.path = '/users'
-- event.body = '{\n    "user_id": "BWMP-883",\n    "name": "De Niro"\n}'
-*/
-
-/*
 API Request Body format:
-{"user_id": {"S": "baba43"}, "name": {"S": "thomas"}}
+{"user_id": {"S": "baba43"}}
 */
 
 module.exports = api_function;
-// create

@@ -42,7 +42,7 @@ api_function.createUser = (item) => {
 /*
 event format:
 - event.httpMethod = 'POST'
-- event.path = '/users'
+- event.path = '/users_create'
 - event.body = '{\n    "user_id": "BWMP-883",\n    "name": "De Niro"\n}'
 */
 
@@ -52,4 +52,3 @@ API Request Body format:
 */
 
 module.exports = api_function;
-// create

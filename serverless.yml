@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-2
-  stage: ${opt:stage, "dev"} # sls deploy --stage test (or qa, dev, prod)
+  stage: ${opt:stage, "dev"} # sls deploy --stage test (or staging, dev, prod)
 
   iamRoleStatements:
     - Effect: Allow

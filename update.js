@@ -53,16 +53,8 @@ api_function.updateUser = (item) => {
 };
 
 /*
-event format:
-- event.httpMethod = 'POST'
-- event.path = '/users'
-- event.body = '{\n    "user_id": "BWMP-883",\n    "name": "De Niro"\n}'
-*/
-
-/*
 API Request Body format:
 {"user_id": {"S": "wnwn834"}, "name": {"S": "newNameJeremy"}}
 */
 
 module.exports = api_function;
-// create
