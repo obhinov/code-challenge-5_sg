@@ -70,7 +70,3 @@ resources: # CloudFormation template syntax from here on.
 
 custom:
   DynamoDBTableName: ${self:service}-users-table-${self:provider.stage}
-
-#${self:service}-users-table-${self:provider.stage}
-#users-table
-
