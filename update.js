@@ -12,7 +12,7 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users_update' && event.httpMethod=='PUT'){
+        if (event.path=='/users' && event.httpMethod=='PUT'){
             response.body = JSON.stringify(await api_function.updateUser(JSON.parse(event.body)));
         }
         response.statusCode = 200;

@@ -12,7 +12,7 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users_create' && event.httpMethod=='POST'){
+        if (event.path=='/users' && event.httpMethod=='POST'){
             response.body = JSON.stringify(await api_function.createUser(JSON.parse(event.body)));
         }
         response.statusCode = 200;

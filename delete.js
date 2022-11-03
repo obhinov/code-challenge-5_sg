@@ -12,7 +12,7 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users_delete' && event.httpMethod=='DELETE'){
+        if (event.path=='/users' && event.httpMethod=='DELETE'){
             response.body = JSON.stringify(await api_function.deleteUser(JSON.parse(event.body)));
         }
         response.statusCode = 200;

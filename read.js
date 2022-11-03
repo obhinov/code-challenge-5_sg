@@ -12,8 +12,8 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users_get' && event.httpMethod=='GET'){
-            response.body = JSON.stringify(await api_function.readUsers(JSON.parse(event.body)));
+        if (event.path=='/users' && event.httpMethod=='GET'){
+            response.body = JSON.stringify(await api_function.readUsers());
         }
         response.statusCode = 200;
     } catch(e) {
@@ -25,7 +25,7 @@ api_function.handler = async(event) => {
 
 };
 
-api_function.readUsers = (item) => {
+api_function.readUsers = () => {
     return new Promise((resolve,reject) => {
         let params = {
             TableName: dynamoTable

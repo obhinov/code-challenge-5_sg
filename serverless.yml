@@ -20,7 +20,7 @@ functions:
     handler: create.handler
     events:
       - http:
-          path: users_create
+          path: users
           method: POST
           cors: true
     environment:
@@ -29,7 +29,7 @@ functions:
     handler: read.handler
     events:
       - http:
-          path: users_get
+          path: users
           method: GET
           cors: true
     environment:
@@ -38,7 +38,7 @@ functions:
     handler: update.handler
     events:
       - http:
-          path: users_update
+          path: users
           method: PUT
           cors: true
     environment:
@@ -47,7 +47,7 @@ functions:
     handler: delete.handler
     events:
       - http:
-          path: users_delete
+          path: users
           method: DELETE
           cors: true
     environment:
