@@ -13,7 +13,13 @@ api_function.handler = async(event) => {
 
     try {
         if (event.path=='/users' && event.httpMethod=='GET'){
-            response.body = JSON.stringify(await api_function.readUsers());
+            if (event.pathParameters) {
+                let user_ID = event.pathParameters.id;
+                response.body = JSON.stringify(await api_function.readUsersById(user_ID));
+            }
+            else {
+                response.body = JSON.stringify(await api_function.readUsers());
+            }
         }
         response.statusCode = 200;
     } catch(e) {
@@ -38,6 +44,24 @@ api_function.readUsers = () => {
         };
 
         dynamodb.scan(params, (err,data) => {
+            if (err) reject(err);
+            else resolve(data);
+        });
+    });
+};
+
+api_function.readUsersById = (user_ID) => {
+    return new Promise((resolve,reject) => {
+        let params = {
+            TableName: dynamoTable,
+            Key: {
+                "user_id": {
+                    S: user_ID
+                }
+            }
+        };
+
+        dynamodb.getItem(params, (err,data) => {
             if (err) reject(err);
             else resolve(data);
         });

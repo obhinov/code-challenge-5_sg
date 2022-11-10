@@ -11,6 +11,7 @@ provider:
       Action:
         - dynamodb:PutItem
         - dynamodb:Scan
+        - dynamodb:GetItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.DynamoDBTableName}
@@ -30,6 +31,10 @@ functions:
     events:
       - http:
           path: users
+          method: GET
+          cors: true
+      - http:
+          path: users/{id}
           method: GET
           cors: true
     environment:
