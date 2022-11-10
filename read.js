@@ -20,6 +20,12 @@ api_function.handler = async(event) => {
         response.body = JSON.stringify(e);
         response.statusCode = 500;
     }
+    
+    response.headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+    };
+
     console.log(response);
     return response;
 
