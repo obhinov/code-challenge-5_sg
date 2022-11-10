@@ -12,7 +12,7 @@ api_function.handler = async(event) => {
     let response = {};
 
     try {
-        if (event.path=='/users' && event.httpMethod=='GET'){
+        if (event.path.includes('/users') && event.httpMethod=='GET'){
             if (event.pathParameters) {
                 let user_ID = event.pathParameters.id;
                 response.body = JSON.stringify(await api_function.readUsersById(user_ID));
